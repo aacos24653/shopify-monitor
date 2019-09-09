@@ -6,11 +6,10 @@ let Notify = {};
 Notify.discord = function (webhook_url, url, brand, metadata, type, color) {
 
 	let myWebhook = new DiscordWebhook(webhook_url);
-	let stock;
 	if (isNaN(metadata.stock)) {
-		stock = 'Unavailable'
+		let stock; 'Unavailable'
 	} else {
-		stock = metadata.stock
+		let stock; metadata.stock
 	}
 
 	let price = metadata.price
@@ -36,26 +35,28 @@ Notify.discord = function (webhook_url, url, brand, metadata, type, color) {
 				"color": color,
 				"timestamp": new Date().toISOString(),
 				"footer": {
-					"icon_url": "https://cdn.discordapp.com/embed/avatars/0.png",
-					"text": "Shopify Monitor by dzt"
+					"icon_url": "https://cdn.discordapp.com/attachments/438005071062761473/460205356816269313/background.png",
+					"text": "Primo Monitor"
 				},
 				"thumbnail": {
 					"url": metadata.img
 				},
 				"author": {
-					"name": "Shopify Monitor",
-					"url": "https://discordapp.com",
-					"icon_url": "https://cdn.discordapp.com/embed/avatars/0.png"
+					"name": "Primo",
+					"url": "",
+					"icon_url": "https://cdn.discordapp.com/attachments/438005071062761473/460205356816269313/background.png"
 				},
 				"fields": [{
 					"name": "Notification Type",
 					"value": type,
 					"inline": true
-				}, {
-					"name": "Stock Count",
-					"value": stock,
-					"inline": true
-				}, {
+		   		},
+		//    {
+		//			"name": "Stock Count",
+		//			"value": stock,
+		//			"inline": true
+		//		},
+				{
 					"name": "Brand",
 					"value": brand,
 					"inline": true
@@ -77,9 +78,9 @@ Notify.slack = function (webhook_url, url, brand, metadata, type, color) {
 	let webhook = new SlackWebhook(webhook_url);
 
 	if (isNaN(metadata.stock)) {
-		let stock = 'Unavailable'
+		let stock; 'Unavailable'
 	} else {
-		let stock = metadata.stock
+		let stock; metadata.stock
 	}
 
 	let price = metadata.price
@@ -105,11 +106,12 @@ Notify.slack = function (webhook_url, url, brand, metadata, type, color) {
 			  "title_link": url,
 			  "color": color,
 			  "fields": [
-				{
-				  "title": "Stock Count",
-				  "value": stock,
-				  "short": "false"
-				}, {
+	//			{
+	//			  "title": "Stock Count",
+	//			  "value": stock,
+	//			  "short": "false"
+	//			},
+	        {
 				  "title": "Brand",
 				  "value": brand,
 				  "short": "false"
@@ -137,7 +139,7 @@ Notify.discordTest = function (webhook_url) {
 	let myWebhook = new DiscordWebhook(webhook_url);
 	myWebhook.on("ready", () => {
 		myWebhook.execute({
-			content: "Shopify Monitor Test"
+			content: "This is an automatic message, please disregard."
 		});
 	});
 }
@@ -159,13 +161,13 @@ Notify.ys = function (webhook_url, data) {
 				"timestamp": new Date().toISOString(),
 				"footer": {
 					"icon_url": "https://cdn.discordapp.com/embed/avatars/0.png",
-					"text": "Shopify Monitor by dzt"
+					"text": "Primo Kicks"
 				},
 				"thumbnail": {
 					"url": data.img
 				},
 				"author": {
-					"name": "Shopify Monitor",
+					"name": "Primo Monitor",
 					"url": "https://discordapp.com",
 					"icon_url": "https://cdn.discordapp.com/embed/avatars/0.png"
 				},
